@@ -7,10 +7,14 @@ import Home from './pages/Home/Home';
 import PokemonCompare from './pages/PokemonCompare/PokemonCompare';
 import PokemonProfile from './pages/PokemonProfile/PokemonProfile';
 import NotFound from './pages/NotFound/NotFound';
+import './styles';
+import {mainTheme} from './styles';
+import {ThemeProvider} from '@material-ui/core/styles';
+
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={mainTheme}>
       <Navbar />
       <main>
           <Router>
@@ -23,7 +27,7 @@ function App() {
           </Router>
           <ActionContainer/>
       </main>
-    </>
+    </ThemeProvider>
   );
 }
 
