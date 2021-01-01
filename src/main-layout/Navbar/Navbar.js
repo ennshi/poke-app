@@ -7,6 +7,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AlbumIcon from '@material-ui/icons/Album';
 import useStyles from './styles';
 import Hidden from '@material-ui/core/Hidden';
+import {Link} from 'react-router-dom';
+import Box from '@material-ui/core/Box';
 
 export default () => {
     const classes = useStyles();
@@ -17,13 +19,20 @@ export default () => {
                 <div className={classes.navbar__logo}>
                     <AlbumIcon color="secondary" />
                     <Typography variant="h6" color="secondary">
-                        <span className={classes['navbar__logo-text']}> Pok&eacute; App</span>
+                        <Link to={'/'} className={classes['navbar__logo-text']}> Pok&eacute; App</Link>
                     </Typography>
                 </div>
                 <Hidden only={['lg']}>
                     <IconButton edge="end" aria-label="actions">
                         <ChevronLeftIcon color="primary"/>
                     </IconButton>
+                </Hidden>
+                <Hidden only={['xs', 'sm', 'md']}>
+                    <Box mr={4}>
+                        <Typography variant="h4" color="primary">
+                            Actions
+                        </Typography>
+                    </Box>
                 </Hidden>
             </Toolbar>
         </AppBar>
