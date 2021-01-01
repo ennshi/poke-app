@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Navbar from './main-layout/Navbar/Navbar';
@@ -13,15 +13,19 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import {useStyles} from './styles';
 import {Hidden} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import MobileActionContainer from './main-layout/MobileActionContainer/MobileActionContainer';
 
 
 function App() {
+    const [showMobileActions, setShowMobileActions] = useState(false);
+    const toggleMobileActions = () => setShowMobileActions((prev) => (!prev));
     const classes = useStyles();
     return (
         <ThemeProvider theme={mainTheme}>
             <Router>
-              <Navbar />
-              <Grid container component="main" className={classes.app__main}>
+                <Navbar toggleMobileActions={toggleMobileActions} showMobileActions={showMobileActions} />
+                {showMobileActions && <MobileActionContainer/>}
+                <Grid container component="main" className={classes.app__main}>
                       <Switch>
                           <Route path='/' exact component={Home} />
                           <Route path='/pokemon-compare' component={PokemonCompare} />
@@ -31,7 +35,7 @@ function App() {
                   <Hidden only={['xs', 'sm', 'md']}>
                     <ActionContainer/>
                   </Hidden>
-              </Grid>
+                </Grid>
             </Router>
         </ThemeProvider>
     );

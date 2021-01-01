@@ -4,13 +4,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import AlbumIcon from '@material-ui/icons/Album';
 import useStyles from './styles';
 import Hidden from '@material-ui/core/Hidden';
 import {Link} from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 
-export default () => {
+export default ({showMobileActions, toggleMobileActions}) => {
     const classes = useStyles();
     return (
         <>
@@ -23,8 +24,11 @@ export default () => {
                     </Typography>
                 </div>
                 <Hidden only={['lg']}>
-                    <IconButton edge="end" aria-label="actions">
-                        <ChevronLeftIcon color="primary"/>
+                    <IconButton edge="end" aria-label="actions" onClick={toggleMobileActions}>
+                        {showMobileActions ?
+                            <ChevronRightIcon color="primary"/> :
+                            <ChevronLeftIcon color="primary"/>
+                        }
                     </IconButton>
                 </Hidden>
                 <Hidden only={['xs', 'sm', 'md']}>
