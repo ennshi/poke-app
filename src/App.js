@@ -11,24 +11,28 @@ import './styles';
 import {mainTheme} from './styles';
 import {ThemeProvider} from '@material-ui/core/styles';
 import {useStyles} from './styles';
+import {Hidden} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 
 function App() {
     const classes = useStyles();
     return (
         <ThemeProvider theme={mainTheme}>
-          <Navbar />
-          <main className={classes.app__main}>
-              <Router>
-                  <Switch>
-                      <Route path='/' exact component={Home} />
-                      <Route path='/pokemon-compare' component={PokemonCompare} />
-                      <Route path='/pokemon/:id' component={PokemonProfile} />
-                      <Route component={NotFound} />
-                  </Switch>
-              </Router>
-              <ActionContainer/>
-          </main>
+            <Router>
+              <Navbar />
+              <Grid container component="main" className={classes.app__main}>
+                      <Switch>
+                          <Route path='/' exact component={Home} />
+                          <Route path='/pokemon-compare' component={PokemonCompare} />
+                          <Route path='/pokemon/:id' component={PokemonProfile} />
+                          <Route component={NotFound} />
+                      </Switch>
+                  <Hidden only={['xs', 'sm', 'md']}>
+                    <ActionContainer/>
+                  </Hidden>
+              </Grid>
+            </Router>
         </ThemeProvider>
     );
 }
