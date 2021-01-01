@@ -24,7 +24,11 @@ export default () => {
     const classes = useStyles();
     const pokemons = mockPokes.map((poke, i) => {
         return (
-            <Container component="article" className={classes.compare__pokemon}>
+            <Container
+                key={i}
+                component="article"
+                className={classes.compare__pokemon}
+            >
                 <Typography variant="h6" color="primary">
                     {poke.name}
                 </Typography>
