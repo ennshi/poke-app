@@ -1,4 +1,4 @@
-import {createMuiTheme} from '@material-ui/core/styles';
+import {unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
 import {red, blue, green} from '@material-ui/core/colors';
 import {makeStyles} from '@material-ui/core/styles';
 import {randomColor} from './utils/randomColor';
