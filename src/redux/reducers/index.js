@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import fetchPokemons from './fetchPokemons';
+import requestPokemons from './requestPokemons';
 
 export default combineReducers({
-    pokemons: fetchPokemons
+    pokemons: requestPokemons
 });
