@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
+import "@fontsource/righteous";
 
 import store from './redux/store';
 import App from './App';

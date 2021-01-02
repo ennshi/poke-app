@@ -1,5 +1,8 @@
 body {
   margin: 0;
-
+  font-family: "Righteous", serif;
 }
 
+a {
+  text-decoration: none;
+}
