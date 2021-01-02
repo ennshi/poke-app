@@ -26,15 +26,17 @@ function App() {
                 <Navbar toggleMobileActions={toggleMobileActions} showMobileActions={showMobileActions} />
                 {showMobileActions && <MobileActionContainer/>}
                 <Grid container component="main" className={classes.app__main}>
-                      <Switch>
-                          <Route path='/' exact component={Home} />
-                          <Route path='/pokemon-compare' component={PokemonCompare} />
-                          <Route path='/pokemon/:id' component={PokemonProfile} />
-                          <Route component={NotFound} />
-                      </Switch>
-                  <Hidden only={['xs', 'sm', 'md']}>
-                    <ActionContainer/>
-                  </Hidden>
+                    <Grid item xs={12} lg={8}>
+                        <Switch>
+                              <Route path='/' exact component={Home} />
+                              <Route path='/pokemon-compare' component={PokemonCompare} />
+                              <Route path='/pokemon/:id' component={PokemonProfile} />
+                              <Route component={NotFound} />
+                        </Switch>
+                    </Grid>
+                    <Hidden only={['xs', 'sm', 'md']}>
+                        <ActionContainer/>
+                    </Hidden>
                 </Grid>
             </Router>
         </ThemeProvider>
