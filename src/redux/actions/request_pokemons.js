@@ -1,6 +1,6 @@
 import {LIMIT_POKEMONS, POKEMONS_REQUEST} from '../constants';
 import {fetchPokemons} from '../../utils/fetch';
-import {GET_FILTERED_POKEMONS} from '../../constants/urls';
+import {GET__POKEMONS, GET_FILTERED_POKEMONS} from '../../constants/urls';
 
 export const requestAllPokemons = () => async (dispatch, getState) => {
     dispatch({
@@ -41,6 +41,32 @@ export const requestFilteredPokemons = () => async (dispatch, getState) => {
             payload: {
                 count: pokemons.length,
                 results: pokemons
+            }
+        });
+    } catch (e) {
+        dispatch({
+            type: POKEMONS_REQUEST.ERROR,
+            payload: e.code
+        });
+    }
+};
+
+export const requestPokemonByName = () => async (dispatch, getState) => {
+    dispatch({
+        type: POKEMONS_REQUEST.PENDING
+    });
+    try {
+        const {searchName} = getState().search;
+        const url = `${GET__POKEMONS}/${searchName}`;
+        const result = await fetchPokemons({url});
+        dispatch({
+            type: POKEMONS_REQUEST.SUCCESS,
+            payload: {
+                count: 1,
+                results: [{
+                    name: searchName,
+                    url
+                }]
             }
         });
     } catch (e) {
