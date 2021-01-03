@@ -8,15 +8,19 @@ import {COLOR_CHIPS, TYPE_CHIPS} from '../../constants/chips';
 import Chip from '@material-ui/core/Chip';
 import Container from '@material-ui/core/Container';
 import {useStyles} from './styles';
+import {useDispatch} from 'react-redux';
+import {addSearchFilter} from '../../redux/actions/search';
 
 export default () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const colorChips = COLOR_CHIPS.map((chip, i) => (
         <Chip
             key={i}
             label={`${chip.label}`}
             clickable
             style={{backgroundColor: `${chip.color}`}}
+            onClick={() => dispatch(addSearchFilter({property: 'color', value: chip.label}))}
         />
     ));
     const typeChips = TYPE_CHIPS.map((chip, i) => (
@@ -25,6 +29,7 @@ export default () => {
             label={`${chip.label}`}
             clickable
             style={{backgroundColor: `${chip.color}`}}
+            onClick={() => dispatch(addSearchFilter({property: 'type', value: chip.label}))}
         />
     ));;
     return (
