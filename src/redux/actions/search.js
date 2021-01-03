@@ -1,4 +1,4 @@
-import {SET_FILTER, SET_SEARCH_NAME} from '../constants';
+import {SEARCH_RESET, SET_FILTER, SET_SEARCH_NAME} from '../constants';
 
 export const addSearchFilter = ({property, value} = {}) => {
     return ({
@@ -12,4 +12,10 @@ export const addSearchName = (name) => {
         type: SET_SEARCH_NAME,
         payload: name
     });
+};
+
+export const resetSearch = () => {
+    return {
+        type: SEARCH_RESET
+    }
 };
