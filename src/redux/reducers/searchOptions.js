@@ -1,4 +1,4 @@
-import {SEARCH_RESET, SET_FILTER} from '../constants';
+import {SEARCH_RESET, SET_FILTER, SET_SEARCH_NAME} from '../constants';
 
 const initialState = {
     filter: null,
@@ -11,6 +11,11 @@ export default (state = {...initialState}, {type, payload}) => {
             return Object.assign(state, {
                 filter: payload,
                 searchName: ''
+            });
+        case SET_SEARCH_NAME:
+            return Object.assign(state, {
+                filter: null,
+                searchName: payload
             });
         case SEARCH_RESET:
             return Object.assign(state, initialState);
