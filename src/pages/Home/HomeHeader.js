@@ -8,6 +8,7 @@ import {useDispatch} from 'react-redux';
 import {resetSearch} from '../../redux/actions/search';
 import {useStyles} from './styles';
 import AlbumIcon from '@material-ui/icons/Album';
+import {Box} from '@material-ui/core';
 
 export default ({filter, searchName}) => {
     const classes = useStyles();
@@ -36,7 +37,7 @@ export default ({filter, searchName}) => {
         }
     }
     return (
-        <Container className={classes['home-header__container']}>
+        <Box className={classes['home-header__container']} boxShadow={1}>
             <Chip
                 icon={chipData.icon && <AlbumIcon className={classes['home-header__icon']}/>}
                 label={`${chipData.label}`}
@@ -49,6 +50,6 @@ export default ({filter, searchName}) => {
                 className={classes['home-header__chip']}
             />
             <Typography variant="h1" color="primary">Pok&eacute;mons</Typography>
-        </Container>
+        </Box>
     )
 };

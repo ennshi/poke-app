@@ -5,7 +5,9 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '10px 0'
+        padding: '15px 0',
+        backgroundColor: 'white',
+        borderRadius: '5px'
     },
     'home-header__icon': {
         color: theme.palette.secondary.main,
