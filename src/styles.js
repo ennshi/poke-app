@@ -30,16 +30,17 @@ export const mainTheme = createMuiTheme({
     }
 });
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
     app__main: {
         width: '100%',
         minHeight: '89.5vh',
         backgroundColor: randomColor(Object.values(COLORS))
     },
     app__content: {
-        backgroundColor: COLORS.WHITE,
-        borderRadius: '10px',
-        width: '95%',
-        margin: '10px auto'
-    }
-});
+        width: '90%',
+        margin: '15px auto',
+        [theme.breakpoints.down('xs')]: {
+            width: '99%'
+        }
+    },
+}));
