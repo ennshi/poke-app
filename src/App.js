@@ -14,6 +14,7 @@ import {useStyles} from './styles';
 import {Hidden} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import MobileActionContainer from './main-layout/MobileActionContainer/MobileActionContainer';
+import Container from '@material-ui/core/Container';
 
 
 function App() {
@@ -27,12 +28,14 @@ function App() {
                 {showMobileActions && <MobileActionContainer/>}
                 <Grid container component="main" className={classes.app__main}>
                     <Grid item xs={12} lg={8}>
-                        <Switch>
-                              <Route path='/' exact component={Home} />
-                              <Route path='/pokemon-compare' component={PokemonCompare} />
-                              <Route path='/pokemon/:id' component={PokemonProfile} />
-                              <Route component={NotFound} />
-                        </Switch>
+                        <Container className={classes.app__content}>
+                            <Switch>
+                                  <Route path='/' exact component={Home} />
+                                  <Route path='/pokemon-compare' component={PokemonCompare} />
+                                  <Route path='/pokemon/:id' component={PokemonProfile} />
+                                  <Route component={NotFound} />
+                            </Switch>
+                        </Container>
                     </Grid>
                     <Hidden only={['xs', 'sm', 'md']}>
                         <ActionContainer/>

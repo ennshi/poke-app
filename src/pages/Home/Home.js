@@ -21,7 +21,7 @@ export default () => {
     }, [filter, searchName]);
     return (
         <>
-            <HomeHeader />
+            <HomeHeader filter={filter} searchName={searchName}/>
             { !error && <PokemonList pokemons={pokemons}/> }
             { error && <h1>{error}</h1> }
         </>

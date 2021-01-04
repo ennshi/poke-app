@@ -15,6 +15,9 @@ export const mainTheme = createMuiTheme({
             'Righteous',
             'serif'
         ],
+        h1: {
+            fontSize: '2rem'
+        },
         h4: {
             fontSize: '1.6rem'
         },
@@ -27,10 +30,17 @@ export const mainTheme = createMuiTheme({
     }
 });
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
     app__main: {
         width: '100%',
         minHeight: '89.5vh',
         backgroundColor: randomColor(Object.values(COLORS))
-    }
-});
+    },
+    app__content: {
+        width: '90%',
+        margin: '15px auto',
+        [theme.breakpoints.down('xs')]: {
+            width: '99%'
+        }
+    },
+}));
