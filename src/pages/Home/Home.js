@@ -3,6 +3,7 @@ import HomeHeader from './HomeHeader';
 import PokemonList from '../../components/PokemonList/PokemonList';
 import {useDispatch, useSelector} from 'react-redux'
 import {requestAllPokemons, requestFilteredPokemons, requestPokemonByName} from '../../redux/actions/request_pokemons';
+import Pagination from '../../components/Pagination/Pagination';
 
 export default () => {
     const dispatch = useDispatch();
@@ -22,7 +23,12 @@ export default () => {
     return (
         <>
             <HomeHeader filter={filter} searchName={searchName}/>
-            { !error && <PokemonList pokemons={pokemons}/> }
+            { !error &&
+                <>
+                    <PokemonList pokemons={pokemons}/>
+                    <Pagination />
+                </>
+            }
             { error && <h1>{error}</h1> }
         </>
     )
