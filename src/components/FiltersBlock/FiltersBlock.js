@@ -21,7 +21,13 @@ export default () => {
             label={`${chip.label}`}
             clickable
             style={{backgroundColor: `${chip.color}`}}
-            onClick={() => dispatch(addSearchFilter({property: 'color', value: chip.label}))}
+            onClick={() => dispatch(
+                addSearchFilter({
+                    property: 'color',
+                    value: chip.label,
+                    color: chip.color
+                })
+            )}
         />
     ));
     const typeChips = TYPE_CHIPS.map((chip, i) => (
@@ -30,7 +36,13 @@ export default () => {
             label={`${chip.label}`}
             clickable
             style={{backgroundColor: `${chip.color}`}}
-            onClick={() => dispatch(addSearchFilter({property: 'type', value: chip.label}))}
+            onClick={() => dispatch(
+                addSearchFilter({
+                    property: 'type',
+                    value: chip.label,
+                    color: chip.color
+                })
+            )}
         />
     ));;
     return (
