@@ -7,7 +7,7 @@ export const requestAllPokemons = () => async (dispatch, getState) => {
         type: POKEMONS_REQUEST.PENDING
     });
     try {
-        const {page} = getState().pokemons;
+        const {page} = getState().pagination;
         const result = await fetchPokemons({page, limit: LIMIT_POKEMONS});
         dispatch({
             type: POKEMONS_REQUEST.SUCCESS,
