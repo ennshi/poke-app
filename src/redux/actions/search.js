@@ -1,9 +1,9 @@
 import {SEARCH_RESET, SET_FILTER, SET_SEARCH_NAME} from '../constants';
 
-export const addSearchFilter = ({property, value} = {}) => {
+export const addSearchFilter = ({property, value, color} = {}) => {
     return ({
         type: SET_FILTER,
-        payload: {property, value}
+        payload: {property, value, color}
     });
 };
 
