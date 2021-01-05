@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container';
 import {useStyles} from './styles';
 import {useDispatch} from 'react-redux';
 import {addSearchFilter} from '../../redux/actions/search';
+import {closeMobileActions} from '../../redux/actions/toggle_mobile_actions';
 
 export default () => {
     const classes = useStyles();
@@ -47,11 +48,17 @@ export default () => {
             </AccordionSummary>
             <AccordionDetails className={classes.filters__container}>
                 <Typography variant="h6" color="primary"> Colors </Typography>
-                <Container className={classes.filters__chips}>
+                <Container
+                    className={classes.filters__chips}
+                    onClick={() => dispatch(closeMobileActions())}
+                >
                     {colorChips}
                 </Container>
                 <Typography variant="h6" color="primary"> Types </Typography>
-                <Container className={classes.filters__chips}>
+                <Container
+                    className={classes.filters__chips}
+                    onClick={() => dispatch(closeMobileActions())}
+                >
                     {typeChips}
                 </Container>
             </AccordionDetails>

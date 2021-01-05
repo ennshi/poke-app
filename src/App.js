@@ -15,18 +15,24 @@ import {Hidden} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import MobileActionContainer from './main-layout/MobileActionContainer/MobileActionContainer';
 import Container from '@material-ui/core/Container';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {closeMobileActions, toggleMobileActions} from './redux/actions/toggle_mobile_actions';
 
 function App() {
-    const [showMobileActions, setShowMobileActions] = useState(false);
-    const toggleMobileActions = () => setShowMobileActions((prev) => (!prev));
+    const showMobileActions = useSelector(state => state.mobile.show);
+    const dispatch = useDispatch();
     const classes = useStyles();
     return (
         <ThemeProvider theme={mainTheme}>
             <Router>
-                <Navbar toggleMobileActions={toggleMobileActions} showMobileActions={showMobileActions} />
+                <Navbar toggleMobileActions={() => dispatch(toggleMobileActions())} showMobileActions={showMobileActions} />
                 {showMobileActions && <MobileActionContainer/>}
-                <Grid container component="main" className={classes.app__main}>
+                <Grid
+                    container
+                    component="main"
+                    className={classes.app__main}
+                    onClick={() => dispatch(closeMobileActions())}
+                >
                     <Grid item xs={12} lg={8}>
                         <Container className={classes.app__content}>
                             <Switch>

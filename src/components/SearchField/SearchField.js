@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import {useStyles} from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {addSearchName} from '../../redux/actions/search';
+import {closeMobileActions} from '../../redux/actions/toggle_mobile_actions';
 
 
 export default () => {
@@ -41,7 +42,10 @@ export default () => {
                         variant="contained"
                         color="secondary"
                         size="medium"
-                        onClick={() => dispatch(addSearchName(currentSearchName))}
+                        onClick={() => {
+                            dispatch(addSearchName(currentSearchName));
+                            dispatch(closeMobileActions());
+                        }}
                     >
                         Find!
                     </Button>
