@@ -38,7 +38,7 @@ export const COLOR_CHIPS = [
         color: COLORS.WHITE
     },
     {
-        label: 'grey',
+        label: 'gray',
         color: COLORS.GREY
     },
 ];

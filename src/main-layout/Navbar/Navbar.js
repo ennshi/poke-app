@@ -15,7 +15,7 @@ export default ({showMobileActions, toggleMobileActions}) => {
     const classes = useStyles();
     return (
         <>
-        <AppBar position="static" className={classes.navbar}>
+        <AppBar className={classes.navbar}>
             <Toolbar className={classes.navbar__toolbar}>
                 <div className={classes.navbar__logo}>
                     <AlbumIcon color="secondary" />
