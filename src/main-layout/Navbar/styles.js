@@ -3,6 +3,10 @@ import {makeStyles} from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
     navbar: {
         backgroundColor: 'white',
+        position: 'sticky',
+        [theme.breakpoints.up('md')]: {
+            position: 'static'
+        }
     },
     navbar__toolbar: {
         display: 'flex',
