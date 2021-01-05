@@ -1,8 +1,7 @@
-import {POKEMONS_REQUEST, SEARCH_RESET, SET_FILTER, SET_SEARCH_NAME} from '../constants';
+import {LIMIT_POKEMONS, POKEMONS_REQUEST, SEARCH_RESET, SET_FILTER, SET_SEARCH_NAME} from '../constants';
 
 const initialState = {
-    page: 1,
-    count: 0,
+    totalPage: 0,
     pokemons: [],
     error: null,
     loading: false
@@ -17,8 +16,7 @@ export default (state = {...initialState}, {type, payload}) => {
         case POKEMONS_REQUEST.SUCCESS:
             return Object.assign(state, {
                 pokemons: payload.results,
-                count: payload.count,
-                page: state.page + 1,
+                totalPage: Math.ceil(payload.count/LIMIT_POKEMONS),
                 loading: false
             });
         case POKEMONS_REQUEST.ERROR:
