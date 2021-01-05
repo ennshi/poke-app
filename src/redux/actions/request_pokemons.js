@@ -1,18 +1,26 @@
-import {LIMIT_POKEMONS, POKEMONS_REQUEST} from '../constants';
+import {LIMIT_POKEMONS, POKEMONS_REQUEST, SET_DISPLAYED_POKEMONS} from '../constants';
 import {fetchPokemons} from '../../utils/fetch';
 import {GET__POKEMONS, GET_FILTERED_POKEMONS} from '../../constants/urls';
 
 export const requestAllPokemons = () => async (dispatch, getState) => {
-    dispatch({
-        type: POKEMONS_REQUEST.PENDING
-    });
     try {
-        const {page} = getState().pokemons;
-        const result = await fetchPokemons({page, limit: LIMIT_POKEMONS});
+        const {page} = getState().pagination;
+        const {fetchedPages} = getState().pokemons;
+        if(!fetchedPages.includes(page)) {
+            dispatch({
+                type: POKEMONS_REQUEST.PENDING
+            });
+            const result = await fetchPokemons({page, limit: LIMIT_POKEMONS});
+            dispatch({
+                type: POKEMONS_REQUEST.SUCCESS,
+                payload: {...result, page}
+            });
+        }
         dispatch({
-            type: POKEMONS_REQUEST.SUCCESS,
-            payload: result
+            type: SET_DISPLAYED_POKEMONS,
+            payload: startEndIdx(page, LIMIT_POKEMONS)
         });
+
     } catch (e) {
         dispatch({
             type: POKEMONS_REQUEST.ERROR,
@@ -27,6 +35,7 @@ export const requestFilteredPokemons = () => async (dispatch, getState) => {
     });
     try {
         const {filter: {property, value}} = getState().search;
+        const {page} = getState().pagination;
         const url = `${GET_FILTERED_POKEMONS[property]}/${value}`;
         const result = await fetchPokemons({url});
         let pokemons = [];
@@ -42,6 +51,10 @@ export const requestFilteredPokemons = () => async (dispatch, getState) => {
                 count: pokemons.length,
                 results: pokemons
             }
+        });
+        dispatch({
+            type: SET_DISPLAYED_POKEMONS,
+            payload: startEndIdx(page, LIMIT_POKEMONS)
         });
     } catch (e) {
         dispatch({
@@ -65,9 +78,13 @@ export const requestPokemonByName = () => async (dispatch, getState) => {
                 count: 1,
                 results: [{
                     name: searchName,
-                    url
+                    url: result.species.url
                 }]
             }
+        });
+        dispatch({
+            type: SET_DISPLAYED_POKEMONS,
+            payload: startEndIdx(1, 1)
         });
     } catch (e) {
         dispatch({
@@ -75,4 +92,21 @@ export const requestPokemonByName = () => async (dispatch, getState) => {
             payload: e.code
         });
     }
+};
+
+export const setDisplayedPokemons = () => (dispatch, getState) => {
+    const {page} = getState().pagination;
+    dispatch({
+        type: SET_DISPLAYED_POKEMONS,
+        payload: startEndIdx(page, LIMIT_POKEMONS)
+    });
+    return Promise.resolve();
+};
+
+const startEndIdx = (page, limit) => {
+    const start = ((page - 1) * limit);
+    return {
+        start,
+        end: start + limit
+    };
 };

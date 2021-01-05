@@ -9,3 +9,11 @@ export const POKEMONS_REQUEST = {
 export const SET_FILTER = 'SET_FILTER';
 export const SET_SEARCH_NAME = 'SET_SEARCH_NAME';
 export const SEARCH_RESET = 'SEARCH_RESET';
+
+export const SET_PAGE = {
+    NEXT: 'SET_NEXT_PAGE',
+    NUMBER: 'SET_PAGE_NUMBER',
+    PREVIOUS: 'SET_PREVIOUS_PAGE'
+};
+
+export const SET_DISPLAYED_POKEMONS = 'SET_DISPLAYED_POKEMONS';
