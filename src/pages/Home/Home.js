@@ -11,6 +11,8 @@ export default () => {
     const error = useSelector(state => state.pokemons.error);
     const filter = useSelector(state => state.search.filter);
     const searchName = useSelector(state => state.search.searchName);
+    const page = useSelector(state => state.pagination.page);
+    const totalPage = useSelector(state => state.pokemons.totalPage);
     useEffect(() => {
         if(filter) {
             dispatch(requestFilteredPokemons());
@@ -26,7 +28,7 @@ export default () => {
             { !error &&
                 <>
                     <PokemonList pokemons={pokemons}/>
-                    <Pagination />
+                    <Pagination page={page} totalPage={totalPage}/>
                 </>
             }
             { error && <h1>{error}</h1> }
