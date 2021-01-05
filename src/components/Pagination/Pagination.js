@@ -15,13 +15,14 @@ export default ({page, totalPage}) => {
             className={classes.pagination__container}
             boxShadow={1}
         >
-            <IconButton>
+            <IconButton
+                disabled={page === 1}
+                onClick={() => dispatch(setNumberPage(1))}
+            >
                 <Typography
                     variant="h6"
                     component="p"
                     color="primary"
-                    disabled={page === 1}
-                    onClick={() => dispatch(setNumberPage(1))}
                 >
                     {(page !== 1) && 1}
                 </Typography>
