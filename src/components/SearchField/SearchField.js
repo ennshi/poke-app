@@ -10,6 +10,8 @@ import {useStyles} from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {addSearchName} from '../../redux/actions/search';
 import {closeMobileActions} from '../../redux/actions/toggle_mobile_actions';
+import {isValidSearchName} from '../../utils/validationSearch';
+import {normalizeText} from '../../utils/normalization';
 
 
 export default () => {
@@ -36,12 +38,15 @@ export default () => {
                         variant="outlined"
                         size="small"
                         value={currentSearchName}
-                        onChange={(e) => setCurrentSearchName((e.target.value).toLowerCase())}
+                        onChange={(e) => (
+                            setCurrentSearchName(normalizeText(e.target.value))
+                        )}
                     />
                     <Button
                         variant="contained"
                         color="secondary"
                         size="medium"
+                        disabled={!isValidSearchName(currentSearchName)}
                         onClick={() => {
                             dispatch(addSearchName(currentSearchName));
                             dispatch(closeMobileActions());
