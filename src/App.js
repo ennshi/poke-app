@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Navbar from './main-layout/Navbar/Navbar';
@@ -17,11 +17,18 @@ import MobileActionContainer from './main-layout/MobileActionContainer/MobileAct
 import Container from '@material-ui/core/Container';
 import {useDispatch, useSelector} from 'react-redux';
 import {closeMobileActions, toggleMobileActions} from './redux/actions/toggle_mobile_actions';
+import {setBgColor} from './utils/randomColor';
+import {COLORS} from './constants/colors';
 
 function App() {
     const showMobileActions = useSelector(state => state.mobile.show);
     const dispatch = useDispatch();
+    const filter = useSelector(state => state.search.filter);
     const classes = useStyles();
+    const [mainBgColor, setMainBgColor] = useState('');
+    useEffect(() => {
+        setMainBgColor(setBgColor(filter, Object.values(COLORS)))
+    }, [filter]);
     return (
         <ThemeProvider theme={mainTheme}>
             <Router>
@@ -32,6 +39,9 @@ function App() {
                     component="main"
                     className={classes.app__main}
                     onClick={() => dispatch(closeMobileActions())}
+                    style={{
+                        backgroundColor: (mainBgColor || COLORS.RED)
+                    }}
                 >
                     <Grid item xs={12} lg={8}>
                         <Container className={classes.app__content}>
