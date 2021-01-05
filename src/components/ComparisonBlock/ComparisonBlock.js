@@ -9,6 +9,8 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import IconButton from '@material-ui/core/IconButton';
 import {useStyles} from './styles';
 import Button from '@material-ui/core/Button';
+import {useDispatch} from 'react-redux';
+import {closeMobileActions} from '../../redux/actions/toggle_mobile_actions';
 
 const mockPokes = [
     {
@@ -22,6 +24,7 @@ const mockPokes = [
 ];
 export default () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const pokemons = mockPokes.map((poke, i) => {
         return (
             <Container
@@ -61,6 +64,7 @@ export default () => {
                         variant="contained"
                         color="secondary"
                         size="medium"
+                        onClick={() => dispatch(closeMobileActions())}
                     >
                         Compare!
                     </Button>
