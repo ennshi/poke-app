@@ -8,43 +8,33 @@ import {COLOR_CHIPS, TYPE_CHIPS} from '../../constants/chips';
 import Chip from '@material-ui/core/Chip';
 import Container from '@material-ui/core/Container';
 import {useStyles} from './styles';
-import {useDispatch} from 'react-redux';
-import {addSearchFilter} from '../../redux/actions/search';
+import {useDispatch, useSelector} from 'react-redux';
+import {addSearchFilter, resetSearch} from '../../redux/actions/search';
 import {closeMobileActions} from '../../redux/actions/toggle_mobile_actions';
+import FilterChip from '../FilterChip/FilterChip';
 
 export default () => {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const filter = useSelector(state => state.search.filter);
     const colorChips = COLOR_CHIPS.map((chip, i) => (
-        <Chip
+        <FilterChip
             key={i}
-            label={`${chip.label}`}
-            clickable
-            style={{backgroundColor: `${chip.color}`}}
-            onClick={() => dispatch(
-                addSearchFilter({
-                    property: 'color',
-                    value: chip.label,
-                    color: chip.color
-                })
-            )}
+            chip={chip}
+            type={"color"}
+            dispatch={dispatch}
+            filter={filter}
         />
     ));
     const typeChips = TYPE_CHIPS.map((chip, i) => (
-        <Chip
+        <FilterChip
             key={i}
-            label={`${chip.label}`}
-            clickable
-            style={{backgroundColor: `${chip.color}`}}
-            onClick={() => dispatch(
-                addSearchFilter({
-                    property: 'type',
-                    value: chip.label,
-                    color: chip.color
-                })
-            )}
+            chip={chip}
+            type={"type"}
+            dispatch={dispatch}
+            filter={filter}
         />
-    ));;
+    ));
     return (
         <Accordion component="section">
             <AccordionSummary

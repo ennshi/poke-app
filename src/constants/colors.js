@@ -10,3 +10,5 @@ export const COLORS = {
     WHITE: '#fafafa',
     GREY: '#607d8b'
 };
+
+export const CHIP_TEXT = '#1a4983';
